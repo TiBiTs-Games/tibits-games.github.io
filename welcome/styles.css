@@ -1,0 +1,454 @@
+        /* --- CSS Variables & Global Styles --- */
+        :root {
+            --primary-highlight: #7ce7c0;
+            --secondary-color: #4d88e0; /* A new accent color */
+            --dark-bg: #1a1a1a;
+            --medium-dark-bg: #2a2a2a;
+            --text-light: #eee;
+            --text-dark: #333;
+            --base-font: "Raleway", system-ui, sans-serif;
+            --border-radius-lg: 12px;
+            --box-shadow-light: 0 4px 10px rgba(0, 0, 0, 0.2);
+            --box-shadow-heavy: 0 8px 20px rgba(0, 0, 0, 0.4);
+        }
+
+        body {
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh; /* Use min-height for scrollable content */
+            background-color: var(--dark-bg);
+            color: var(--text-light);
+            font-family: var(--base-font);
+            line-height: 1.6;
+            overflow-x: hidden; /* Prevent horizontal scroll */
+        }
+
+        *, *::before, *::after {
+            box-sizing: border-box;
+        }
+
+        /* --- Background with less aggressive overlay/blur --- */
+        .background-image-wrapper {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -2; /* Below content and subtle overlay */
+            background-image: url('https://images.unsplash.com/photo-1587327901594-8a03a2b1f8c1?q=80&w=2670&auto=format&fit=crop');
+            background-repeat: no-repeat;
+            background-attachment: fixed;
+            background-size: cover;
+            background-position: center;
+        }
+
+        .background-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.4); /* Lighter overlay */
+            backdrop-filter: blur(5px); /* Less blur */
+            z-index: -1;
+        }
+
+        /* --- Animations --- */
+        /* These animations are now for the hero section content only */
+        @keyframes fadeInSlideUp {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        @keyframes popIn {
+            from { opacity: 0; transform: scale(0.8); }
+            to { opacity: 1; transform: scale(1); }
+        }
+
+        /* --- Header (Standard Top Nav) --- */
+        .header {
+            width: 100%;
+            background-color: var(--medium-dark-bg);
+            padding: 1rem 3rem;
+            box-shadow: var(--box-shadow-heavy);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            z-index: 100; /* Ensure it's above content */
+        }
+
+        .logo {
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: var(--primary-highlight);
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            
+        }
+
+        .logo span {
+            padding-left: 4px;
+            
+            
+        }
+
+        /* Added for the logo image */
+        .logo img {
+            height: 40px; /* Adjust as needed */
+            width: auto;
+            vertical-align: middle;
+            background-color: aliceblue;
+            border-radius: 8px;
+            padding: 6px;
+            margin: 3px;
+        }
+
+        .logo .material-symbols-outlined {
+            font-size: 2.2rem;
+        }
+
+        .nav-menu {
+            display: flex;
+            gap: 25px;
+            list-style: none;
+            margin: 0;
+            padding: 0;
+        }
+
+        .nav-menu a {
+            color: var(--text-light);
+            text-decoration: none;
+            font-weight: 400;
+            font-size: 1.1rem;
+            padding: 5px 0;
+            position: relative;
+            transition: color 0.2s ease;
+        }
+
+        .nav-menu a::after {
+            content: '';
+            position: absolute;
+            left: 0;
+            bottom: -5px;
+            width: 0;
+            height: 2px;
+            background-color: var(--primary-highlight);
+            transition: width 0.3s ease;
+        }
+
+        .nav-menu a:hover::after,
+        .nav-menu a:focus::after {
+            width: 100%;
+        }
+
+        .nav-menu a:hover,
+        .nav-menu a:focus {
+            color: var(--primary-highlight);
+        }
+
+        /* Comment back in when the time is right:
+            .search-container {
+                position: relative;
+                display: flex;
+                align-items: center;
+            }
+
+            .search-container .material-symbols-outlined {
+                position: absolute;
+                left: 15px;
+                color: rgba(255, 255, 255, 0.4);
+                font-size: 1.2rem;
+            }
+
+            .search {
+                width: 250px; 
+                height: 38px;
+                border: 1px solid rgba(255, 255, 255, 0.2);
+                border-radius: 50px;
+                background: rgba(43, 43, 43, 0.7);
+                color: white;
+                padding: 0 15px 0 45px;
+                font-size: 0.95rem;
+                font-family: var(--base-font);
+                transition: all 0.3s ease;
+            }
+
+            .search:focus {
+                background-color: rgba(255, 255, 255, 0.1);
+                border-color: var(--primary-highlight);
+                box-shadow: 0 0 10px rgba(124, 231, 192, 0.5);
+                outline: none;
+            }
+        */
+        
+
+        /* Hero, like Superman, Section (Welcome Banner)  */
+        .hero-section {
+            text-align: center;
+            padding: 80px 20px;
+            width: 100%;
+            /* Gradient for the banner itself */
+            background-image: url("heroBacking.png");
+            background-size: cover;
+            background-repeat: no-repeat;
+            background-clip: border-box;
+            
+            position: relative;
+            z-index: 0;
+            /* Optional: Add a subtle border or shadow to the section */
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+        }
+
+        .hero-section div {
+            position: relative;
+            width: 100%;
+            height: 100%;
+            margin: 0;
+            backdrop-filter: blur(8px);
+            background-color: #1a1a1ab9;
+        }
+
+        .hero-section h1 {
+            font-size: 3.5rem;
+            margin-bottom: 15px;
+            color: var(--primary-highlight);
+            text-shadow: 2px 2px 5px rgba(0,0,0,0.5);
+            opacity: 0; /* Hidden initially for animation */
+            animation: fadeInSlideUp 1s ease-out forwards;
+            animation-delay: 0.3s;
+        }
+
+        .hero-section p {
+            font-size: 1.3rem;
+            max-width: 800px;
+            margin: 0 auto 30px auto;
+            color: var(--text-light);
+            opacity: 0; /* Hidden initially for animation */
+            animation: fadeIn 1s ease-out forwards;
+            animation-delay: 0.8s;
+        }
+
+        .btn-primary {
+            display: inline-block;
+            padding: 12px 30px;
+            background-color: var(--primary-highlight);
+            color: var(--dark-bg); /* Dark text on light button */
+            text-decoration: none;
+            border-radius: 50px;
+            font-weight: 700;
+            transition: background-color 0.3s ease, transform 0.2s ease, box-shadow 0.3s ease;
+            box-shadow: var(--box-shadow-light);
+            opacity: 0; /* Hidden initially for animation */
+            animation: popIn 0.6s ease-out forwards;
+            animation-delay: 1.3s;
+        }
+
+        .btn-primary:hover {
+            background-color: #66d1b1; /* Slightly darker hover */
+            transform: translateY(-2px);
+            box-shadow: var(--box-shadow-heavy);
+        }
+
+        /* Content Sections (Standard */
+        .section {
+            padding: 60px 40px;
+            width: 100%;
+            max-width: 1200px; /* Constrain content width for readability */
+            margin: 0 auto;
+        }
+
+        .section-title {
+            font-size: 2.5rem;
+            text-align: center;
+            margin-bottom: 40px;
+            color: var(--primary-highlight);
+            text-shadow: 1px 1px 3px rgba(0,0,0,0.3);
+        }
+
+        /*  Content List Grid (Standard Vertical Display) */
+        .content-list-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); /* Responsive grid columns */
+            gap: 30px; /* Space between cards */
+            justify-content: center; /* Center items if they don't fill the row */
+            padding: 0;
+            margin: 0 auto; /* Center the grid itself */
+        }
+
+        /* Content Card Styling (NO GRADIENT BORDER HERE)  */
+        .content-card {
+            border-radius: var(--border-radius-lg);
+            background-color: var(--medium-dark-bg);
+            background-size: cover;
+            background-position: center;
+            box-shadow: var(--box-shadow-light);
+            cursor: pointer;
+            transition: all 0.3s ease-in-out;
+            /* Removed gradient border specific CSS from here */
+            position: relative; /* Keep if needed for internal elements, but not for border now */
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: flex-end;
+            padding: 1.5rem;
+            color: white;
+            min-height: 250px;
+            text-align: center;
+            text-decoration: none;
+        }
+
+        /* Card-specific images */
+        #card-games { background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.8)), url('welcome/'); }
+        #card-software { background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.8)), url('welcome/'); }
+        #card-technology { background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.8)), url('welcome/'); }
+
+        .content-card-title {
+            font-size: 1.8rem;
+            font-weight: 700;
+            text-shadow: 0 2px 5px rgba(0,0,0,0.8);
+            margin-bottom: 0.5rem;
+        }
+
+        .content-card-description {
+            font-size: 0.9rem;
+            font-weight: 300;
+            opacity: 0.8;
+        }
+
+        /* Removed gradient border on hover/focus from cards */
+        .content-card:hover, .content-card:focus {
+            transform: scale(1.02); /* Still keep the subtle scale effect */
+            box-shadow: var(--box-shadow-heavy);
+            /* Removed outline / gradient-border logic from here */
+        }
+
+        /*Footer*/
+        .footer {
+            width: 100%;
+            background-color: var(--medium-dark-bg);
+            padding: 2.5rem 3rem;
+            margin-top: auto; /* Pushes footer to the bottom */
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            text-align: center;
+            font-size: 0.9rem;
+            color: rgba(255, 255, 255, 0.6);
+            box-shadow: inset 0 5px 15px rgba(0, 0, 0, 0.2);
+        }
+
+        .footer p {
+            margin: 0;
+        }
+
+        .footer-links {
+            list-style: none;
+            padding: 0;
+            margin: 15px 0 0;
+            display: flex;
+            justify-content: center;
+            gap: 25px;
+        }
+
+        .footer-links a {
+            color: rgba(255, 255, 255, 0.7);
+            text-decoration: none;
+            transition: color 0.2s ease;
+        }
+
+        .footer-links a:hover {
+            color: var(--primary-highlight);
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .header {
+                flex-direction: column;
+                padding: 1rem 1.5rem;
+            }
+
+            .logo {
+                margin-bottom: 15px;
+            }
+
+            .nav-menu {
+                flex-wrap: wrap;
+                justify-content: center;
+                margin-bottom: 15px;
+            }
+
+            .search-container {
+                width: 100%;
+                justify-content: center;
+            }
+
+            .search {
+                width: 100%;
+                max-width: 300px;
+            }
+
+            .hero-section h1 {
+                font-size: 2.5rem;
+            }
+
+            .hero-section p {
+                font-size: 1rem;
+            }
+
+            .section {
+                padding: 40px 20px;
+            }
+
+            .section-title {
+                font-size: 2rem;
+            }
+
+            .content-list-grid {
+                grid-template-columns: 1fr; /* Single column on small screens */
+            }
+        }
+
+        @media (max-width: 480px) {
+            .header {
+                padding: 1rem;
+            }
+            .logo {
+                font-size: 1.5rem;
+            }
+            .logo .material-symbols-outlined {
+                font-size: 1.8rem;
+            }
+            .nav-menu {
+                gap: 15px;
+            }
+            .nav-menu a {
+                font-size: 1rem;
+            }
+            .hero-section h1 {
+                font-size: 2rem;
+            }
+            .hero-section p {
+                font-size: 0.9rem;
+            }
+            .section {
+                padding: 30px 15px;
+            }
+            .section-title {
+                font-size: 1.8rem;
+            }
+            .content-card {
+                min-height: 200px;
+            }
+            .content-card-title {
+                font-size: 1.5rem;
+            }
+        }
