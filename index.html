@@ -5,18 +5,14 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Welcome to TiBiTs</title>
 
-    <!--Fonts and stuff-->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Raleway:wght@300;400;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
 
-    <!--Local resources-->
     <link rel="stylesheet" href="welcome/styles.css">
 </head>
 <body>
-    
-
     <header class="header">
         <a href="#" class="logo">
             <img src="iconAssets/129.png" alt="Oops">
@@ -30,14 +26,7 @@
                 <li><a href="#about">About Us</a></li>
             </ul>
         </nav>
-        <!--
-        There is nothing to search as the site isn't completed
-            <div class="search-container">
-                <span class="material-symbols-outlined">search</span>
-                <input type="search" class="search" placeholder="Search...">
-            </div>
-        -->
-    </header>
+        </header>
     <main>
         <section class="hero-section">
             <div class="background-overlay"></div>
@@ -46,36 +35,59 @@
                 <p>A studio with an unfinished website!</p>
                 <a href="#discover" class="btn-primary">Explore our unfinished links!</a>
             </div>
+            <a href="#discover" class="scroll-down-arrow">
+                <span class="material-symbols-outlined">
+                    expand_more
+                </span>
+            </a>
         </section>
 
         <section id="discover" class="section">
-            <h2 class="section-title">Discover Our Categories</h2>
+            <h2 class="section-title reveal">Discover Our Categories</h2>
             <div class="content-list-grid">
 
-                <a href="#" class="content-card" id="card-games">
+                <a href="#" class="content-card reveal" id="card-games">
                     <div class="content-card-filter"></div>
-                    <h3 class="content-card-title">Games</h3>
-                    <p class="content-card-description">Unfortunatly we are still developing them...</p>
+                    <div class="content-information">
+                        <h3 class="content-card-title">Games</h3>
+                        <p class="content-card-description">Unfortunatly we are still developing them...</p>
+                    </div>
                 </a>
 
-                <a href="#" class="content-card" id="card-software">
+                <a href="#" class="content-card reveal" id="card-software">
                     <div class="content-card-filter"></div>
-                        <h3 class="content-card-title">Software</h3>
-                        <p class="content-card-description">Sadly they need a little bug fix...</p>
+                        <div class="content-information">
+                            <h3 class="content-card-title">Software</h3>
+                            <p class="content-card-description">Sadly they need a little bug fix...</p>
+                        </div>
                 </a>
-                <a href="#" class="content-card" id="card-technology">
+                <a href="#" class="content-card reveal" id="card-technology">
                     <div class="content-card-filter"></div>
-                    <h3 class="content-card-title">Technology</h3>
-                    <p class="content-card-description">Its being used to develop our games...</p>
+                    <div class="content-information">
+                        <h3 class="content-card-title">Technology</h3>
+                        <p class="content-card-description">Its being used to develop our games...</p>
+                    </div>
                 </a>
             </div>
+            <br>
+            <hr class="reveal">
+            <h3 class="section-title reveal">Understanding the systems:</h3>
+            <p style="max-width: 800px; margin: 0 auto 20px auto; text-align: center;" class="reveal">
+                As we are in the industry of creating games, we also have lots of software we use to make these games, therfore we decided to
+                make our own software avaliable to everyone. We have ideas for other things, such as applications or selection systems.
+                <br>
+                <br>
+                Developing games is hard, especially when the software doesn't work, that's why we decided to make our systems availible. Please
+                remember we have not finished any systems yet, so please wait...
+            </p>
+            <hr class="reveal">
         </section>
 
         
         <section id="about" class="section">
             
-            <h2 class="section-title">About the studio</h2>
-            <p style="max-width: 800px; margin: 0 auto 20px auto; text-align: center;">
+            <h2 class="section-title reveal">About the studio</h2>
+            <p style="max-width: 800px; margin: 0 auto 20px auto; text-align: center;" class="reveal">
                 After countless ages of work and complex solutions TiBiTs was founded on the 20th June 2025, its nice to have a cool studio created on a nice <strong><em>even</em></strong> day!
                 <br>
                 <br>
@@ -88,15 +100,48 @@
 
     <footer class="footer">
         <p>&copy; 2025 TiBiTs. All rights reserved.  | Version 0.1.2 (style update)</p>
-        <!--Insert when time required
-        <ul class="footer-links">
-            
-            <li><a href="#"></a></li>
-            <li><a href="#"></a></li>
-            <li><a href="#"></a></li>
-            
-        </ul>
-        -->
     </footer>
+
+        <script>
+            document.addEventListener('DOMContentLoaded', () => {
+                // const header = document.getElementsByClassName('.header');
+                const revealElements = document.querySelectorAll('.reveal');
+                /*
+                    if (header) {
+                        const scrollThreshold = 0.2; // Pixels to scroll before changing header
+                        window.addEventListener('scroll', () => {
+                            if (window.scrollY > scrollThreshold) {
+                                header.classList.add('scrolled');
+                            } else {
+                                header.classList.remove('scrolled');
+                            }
+                        }, { passive: true });
+                    }
+                */
+
+                // --- 2. Element Animation on Scroll (Intersection Observer) ---
+                if (revealElements.length > 0) {
+                    const observerOptions = {
+                        root: null,      // relative to the viewport
+                        rootMargin: '0px',
+                        threshold: 0.1   // 10% of the item must be visible to trigger
+                    };
+    
+                    const observerCallback = (entries, observer) => {
+                        entries.forEach(entry => {
+                            // When an element is intersecting with the viewport, add the 'visible' class
+                            if (entry.isIntersecting) {
+                                entry.target.classList.add('visible');
+                                observer.unobserve(entry.target); // Optional: stop observing it after it has appeared
+                            }
+                        });
+                    };
+    
+                    const observer = new IntersectionObserver(observerCallback, observerOptions);
+                    revealElements.forEach(el => observer.observe(el));
+                }
+            });
+        </script>
+
 </body>
 </html>
